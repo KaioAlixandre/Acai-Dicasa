@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Açai DiCasa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    .swiper-slide {
+      width: 80% !important;
+    }
+  </style>
+</head>
+<body class="bg-purple-900">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md px-4 py-3 flex justify-between items-center sticky top-0 z-50">
+  <!-- Nome da empresa -->
+    <img class="w-20" src="img/LogoAcai.png" alt="">
+
+    <!-- Botões à direita -->
+    <div class="flex items-center gap-4">
+      <!-- Botão Login -->
+      <a href="cad.html" class="text-sm font-medium text-gray-700 hover:text-purple-700 transition">Fazer Login</a>
+
+      <!-- Carrinho -->
+      <button class="abrir-cart relative p-2 rounded-full hover:bg-purple-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h11.2M16 16a2 2 0 11-4 0 2 2 0 014 0zm-6 0a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <!-- Badge de itens no carrinho -->
+        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">0</span>
+      </button>
+    </div>
+</header>
+
+
+  
+  
+    <!-- Categorias -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 px-4 max-w-screen-xl mx-auto justify-center mt-20">
+    
+      <button class="adicionar-categoria">
+        <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+          <img src="img/Acai.jpeg" alt="Açaí" class="w-full object-cover rounded-xl mb-3" />
+          <span class="text-lg font-semibold text-purple-700">Açaí</span>
+        </div>
+      </button>
+   
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="img/Tapioca.jpeg" alt="Açaí" class="w-full  object-cover rounded-xl mb-3" />
+      <span class="text-lg font-semibold text-purple-700">Tapiocas</span>
+    </div>
+
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="img/Pastel.jpeg" alt="Açaí" class="w-full object-cover rounded-xl mb-3" />
+      <span class="text-lg font-semibold text-purple-700">Pasteis</span>
+    </div>
+
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="img/Soverte.jpeg" alt="Açaí" class="w-full object-cover rounded-xl mb-3" />
+      <span class="text-lg font-semibold text-purple-700">Sovertes</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-xl p-3 shadow hover:shadow-lg transition w-full">
+      <img src="img/panqueca.jpeg" alt="Açaí" class="w-full object-cover rounded-xl mb-3" />
+      <span class="text-lg font-semibold text-purple-700">Panquecas</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="https://img.icons8.com/emoji/48/money-with-wings.png" class="w-10 h-10" />
+      <span class="text-xs mt-1">Cupons</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="https://img.icons8.com/emoji/48/shrimp.png" class="w-10 h-10" />
+      <span class="text-xs mt-1">Gourmet</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-xl p-2 shadow hover:shadow-lg transition w-full">
+      <img src="https://img.icons8.com/emoji/48/package.png" class="w-10 h-10" />
+      <span class="text-xs mt-1">Shopping</span>
+    </div>
+  </div>
+  <!-- Fim Categorias -->
+
+   <!-- Modal de Produtos -->
+<!-- Modal com produtos detalhados -->
+<div class="modal fade" id="modalProdutos" tabindex="-1" aria-labelledby="modalProdutosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-purple-700 text-white">
+        <h5 class="modal-title" id="modalProdutosLabel">Açais</h5>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          
+          
+          <!-- Produto com valor inserido manualmente -->
+          <div class="col-md-12">
+            <div class="border rounded p-3 d-flex gap-3 align-items-center">
+              <img src="img/Acai.jpeg" alt="Açaí" class="rounded" style="width: 80px; height: 80px; object-fit: cover;" />
+              <div class="flex-grow-1">
+                <h6 class="mb-1">Açaí Personalizado</h6>
+
+                <!-- Valor inserido manualmente -->
+                <div class="mb-2">
+                  <label class="form-label mb-1">Insira o valor (R$):</label>
+                  <input type="number" id="valorAcai" class="form-control form-control-sm w-50" placeholder="Ex: 12.00" min="0" step="0.01" />
+                </div>
+
+                <!-- Quantidade e botão -->
+                <div class="d-flex align-items-center gap-2">
+                  <input type="number" value="1" min="1" id="qtdAcai" class="form-control form-control-sm w-25" />
+                  <button class="btn btn-sm btn-success" onclick="adicionarAcai()">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produto com valor fixo -->
+          <div class="col-md-12">
+            <div class="border rounded p-3 d-flex gap-3 align-items-center">
+              <img src="img/Acai.jpeg" alt="Açaí" class="rounded" style="width: 80px; height: 80px; object-fit: cover;" />
+              <div class="flex-grow-1">
+                <h6 class="mb-1">Açaí Personalizado</h6>
+
+                <!-- Valor fixo exibido -->
+                <p class="text-muted mb-2">Preço: <strong>R$ 12,00</strong></p>
+
+                <!-- Quantidade e botão -->
+                <div class="d-flex align-items-center gap-2">
+                  <input type="number" value="1" min="1" id="qtdAcai" class="form-control form-control-sm w-25" />
+                  <button class="btn btn-sm btn-success" onclick="adicionarAcaiValorFixo()">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Você pode duplicar esse bloco para mais produtos -->
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal do Carrinho -->
+<div class="modal fade" id="modalCarrinho" tabindex="-1" aria-labelledby="modalCarrinhoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-purple-700 text-white">
+        <h5 class="modal-title" id="modalCarrinhoLabel">Seu Carrinho</h5>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="lista-carrinho-modal" class="list-group mb-3"></ul>
+        <div class="text-end">
+          <strong>Total: R$ <span id="total-carrinho-modal">0.00</span></strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success">Finalizar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/capa-tapioca-tradicional.avif" class="d-block w-30" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/iStock-1248573149.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/iStock-1359526620-1024x683.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+-->
+  <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+<!-- Container do popup (inicialmente invisível) -->
+<div id="popupMensagem" class="fixed top-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white text-center z-50 hidden"></div>
+<script src="script.js"></script>
+</body>
+</html>

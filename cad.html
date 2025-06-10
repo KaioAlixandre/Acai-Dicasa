@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Açai Dicasa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-purple-900">
+    <div class="bg-white flex-col items-center justify-center mt-40  rounded-lg shadow-lg w-96 mx-auto">
+        <div class="p-4">
+            <div class="flex items-center justify-center">
+                <h1 class="text-3xl font-extrabold text-purple-700 tracking-tight">Login</h1>
+            </div>
+            <form id="loginForm" >
+                <div class="mt-10">
+                    <p class="text-purple-900 font-bold">Seu e-mail:</p>
+                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" class="border border-gray-300 rounded-lg p-1 w-full mb-4">
+                </div>
+                <div>
+                    <p class="text-purple-900 font-bold">Senha:</p>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" class="border border-gray-300 rounded-lg p-1 w-full mb-4">
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                    <a href="#" class="text-purple-900 hover:underline">Esqueci minha senha</a>
+                     <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded-lg hover:bg-purple-800">Entrar</button>
+                </div>
+            </form>
+        </div>
+        <div class="bg-purple-300 p-2 rounded-b-lg">
+                <p class="text-center ">Não tem uma conta? <a href="#" class="text-purple-900 hover:underline">Cadastre-se</a></p>
+            </div>
+    </div>
+    <!-- Container do popup (inicialmente invisível) -->
+<div id="popupMensagem" class="fixed top-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white text-center z-50 hidden"></div>
+
+<script>
+// Função para exibir o popup
+function mostrarMensagem(texto, sucesso = true) {
+    const popup = document.getElementById('popupMensagem');
+    popup.className = `fixed top-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white text-center z-50 
+        ${sucesso ? 'bg-green-500' : 'bg-red-500'}`;
+    popup.innerText = texto;
+    popup.classList.remove('hidden');
+
+    setTimeout(() => {
+        popup.classList.add('hidden');
+    }, 3000);
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // impede o reload da página
+
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    // Aqui você pode trocar por um back-end real (API, PHP, Node, etc.)
+    if (email === "Catherine21@gmail.com" && senha === "KT.123456") {
+        mostrarMensagem("Login realizado com sucesso!", true);
+        window.location.href = "index.html"; // Redireciona para outra página
+    } else {
+        mostrarMensagem("E-mail ou senha incorretos. Tente novamente.", false);
+    }
+});
+</script>
+
+</body>
+</html>
